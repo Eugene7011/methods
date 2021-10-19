@@ -1,0 +1,339 @@
+import java.util.*;
+
+class Methods {
+
+	public static void main(String[] args) {
+		
+		//методы 1-4
+		int a = 5, b = 12, c =15, d = 4, e = 21;
+
+		int count = factorial(a);
+
+		for(int i = 0; i < count; i++){
+			System.out.println("Method");
+		}
+
+		// для метода 5
+		int year = 1900;
+		boolean flag = isLeapYear(year);
+		System.out.println(flag); 
+
+		// для метода 6
+		char [] array = {'h', 'e', 'l', 'l', 'o', '1', '2', '3'}; 
+		printCharArray(array);
+
+		// для метода 6-1
+		int[] intArray = new int[] {90, 2, 7, 3, 10, 6};
+		char[] newCharArray = toCharArray(intArray);
+		for (int i = 0; i < newCharArray.length; i++){
+			System.out.print(newCharArray[i] + " ");
+		}
+
+		// для метода 7
+		char [] myCharArray = {'h', 'e', 'l', 'l', 'o', '4', '5', '6'};
+		String string = toString(myCharArray);
+		System.out.println(string);
+
+		// для метода 8,9
+		int[] eightArray = new int[] {9, 2, 7, 3, 10, 6};
+		int number = 4; 
+		int result = lastIndexOf(eightArray, number); //   int result = checkSameNumber(eightArray, 4);
+		System.out.println(result);
+
+		// для метода 10
+		int [] tenArray = new int[] {12, 24, 8, 9, 7, 126};
+		printMultipled(tenArray, 8);
+		System.out.println();
+
+		// для метода 13
+		int [] thirteenArray = new int[] {12, 24, 8, 9, 7, 126};
+		sortArray(thirteenArray);
+
+		System.out.println();
+
+		// для метода 14
+		byte [] fourteenArray = new byte[] {1, 0, 126, 14, 15, 7};
+		System.out.println(isByteRepeated(fourteenArray));
+
+		// для метода 15
+		int [] fifteenFirstArray = new int[] {1, 2, 3, 4, 5};
+		int [] fifteenSecondArray = new int[] {2, 2, 2, 2, 2};
+		int[] multiplytiplyArray = multiplyArrays(fifteenFirstArray, fifteenSecondArray);
+		for (int i = 0; i < multiplytiplyArray.length; i++){
+			System.out.print(multiplytiplyArray[i] + " ");
+		}
+		
+		System.out.println();
+
+		//для метода 17
+		int [] seventeenArray = new int[] {11, 12, 13, 14, 15};
+		int[] reversedArray = toReversedArray(seventeenArray);
+		for (int i = 0; i < reversedArray.length; i++){
+			System.out.print(reversedArray[i] + " ");
+		}
+		
+		System.out.println();
+
+		//для метода 18
+		int length = 5, up = 50, low = 5;
+		int [] createdArray = createArray(length, up, low);
+		for (int i = 0; i < createdArray.length; i++){
+			System.out.print(createdArray[i] + " ");
+		}
+
+		System.out.println();
+
+		//для метода 19
+		//char [] nineteenArrayFirst = {'h', 'e', 'l', 'l', 'o', '4', '5', '6', '7', '8'};
+		//char [] nineteenArraySecond = {'h', 'e', 'l', 'l', 'o', '4', '5', '6'};
+		//boolean sameArray = isSameArray(nineteenArrayFirst, nineteenArraySecond);
+		//System.out.println(sameArray);
+	}
+
+	// 1) принимает 2 инта, а и б, возвращает большее их этих 2х чисел
+	static int max(int a, int b){
+		return Math.max(a, b); // return a > b ? a : b;
+	}
+
+	// 2) принимает 3 инта, возвращает большее из них
+	static int max(int a, int b, int c){
+		int[] num = {a, b, c};
+		int max = num[0];
+
+		for (int i = 1; i < num.length; i++){
+				max = Math.max(max, num[i]);
+		}
+		return max;
+	}
+
+	// 3) принимает 5 интов, возвращает большее из них - тот же смысл что и выше
+	static int max(int a, int b, int c, int d, int e){
+		int[] num = {a, b, c, d, e};
+		int max = num[0];
+		for (int i = 1; i < num.length; i++){
+				max = Math.max(max, num[i]);
+		}
+		return max;
+	}
+
+	//4) метод принимает инт, и возвращает факториал от заданого инта
+	static int factorial(int a){
+		int factorial = 1;
+		for (int i = 1; i <= a; i++){
+			factorial = factorial*i;
+		}
+		return factorial;
+	}
+
+	//5) принимает инт год, и возвращает тру если год высокосный
+	static boolean isLeapYear(int year){
+		boolean flag = false;
+
+		if ((year%4 == 0) && (year%100 != 0) && (year%400 == 0)) {
+			flag = true;
+		}
+		
+		return flag;
+	}
+
+	//6)принимает массив чаров, выводит его на экран
+	static void printCharArray(char [] array){
+		
+	 	for(int i = 0; i < array.length; i++) {
+	     	System.out.print(array [i] + "");
+	     }
+	     
+	}
+
+	//6-1) принимает массив интов, возвращает массив чаров, 
+	//каждый символ в позиции массива соответствует коду символа передаваемого инта
+	static char[] toCharArray(int [] intArray){
+		int size = intArray.length;
+		char [] newCharArray = new char[size]; 
+
+		 for(int i = 0; i < size; i++) {
+		     newCharArray[i] = (char) intArray[i];
+	     }
+
+	     return newCharArray;
+	 }
+
+	//7) принимает массив чаров, возвращает строку состоящую из символов массива
+	static String toString(char [] myCharArray){
+	     String result = String.valueOf(myCharArray);
+	     return result;
+	}
+
+	//8) принимает массив интов, и значение типа инт, возвращает индекс массива 
+	//в котором значение совпадает с передаваемым, начиная с начала массива. 
+	//Если значения в массиве нет возвращает -1
+	static int indexOf(int [] eightArray, int number){
+		int index = -1;
+
+		for(int i = 0; i < eightArray.length; i++) {
+	     	int value = eightArray[i];
+	     	if (value == number){
+	     		index = i;
+	     	}
+	    }
+	     return index;
+	}
+
+	//9) принимает массив интов, и значение типа инт, возвращает индекс массива 
+	//в котором значение совпадает с передаваемым, начиная с конца массива. 
+	//Если значения в массиве нет возвращает -1
+	static int lastIndexOf(int [] eightArray, int number){
+		int index = -1;
+
+		for(int i = 0; i < eightArray.length; i++) {
+	     	int value = eightArray[i];
+	     	if (value == number){
+	     		index = eightArray.length - i - 1;
+	     	}
+	    }
+	     return index;
+	}
+
+	//10) приминает массив интов и число, выводит на екран только елементы массива которые кратны этому числу
+	static void printMultipled(int [] tenArray, int number){
+		int multipleElement;
+
+		for(int i = 0; i < tenArray.length; i++) {
+	     	int value = tenArray[i];
+	     	if (value % number == 0){
+	     		multipleElement = value;
+	     		System.out.print(multipleElement + " ");
+	     	}
+	    }
+	}
+
+	//13) метод принимает массив интов сортирует его по возрастанию
+	static void sortArray(int [] thirteenArray){
+		boolean sorted = false;
+    	int value;
+
+    	while(!sorted) {
+       	 	sorted = true;
+        	for (int i = 0; i < thirteenArray.length - 1; i++) {
+            	if (thirteenArray[i] > thirteenArray[i+1]) {
+	                value = thirteenArray[i];
+	                thirteenArray[i] = thirteenArray[i+1];
+	                thirteenArray[i+1] = value;
+	                sorted = false;
+            	}	
+	     	}
+	    }
+	    for (int i = 0; i < thirteenArray.length; i++){
+	    	System.out.print(thirteenArray[i] + " ");
+	    }
+	}
+
+
+
+	//14) принимает массив байт, если в массиве есть повторяющиеся елементы, возвращает тру
+	
+	static boolean isByteRepeated(byte [] fourteenArray){
+		boolean repeated = false;
+    		    
+    	if (fourteenArray.length > 256) {
+    		repeated = true;
+    		return repeated;
+    	}	    
+	    else{
+		    for (int i = 0; i < fourteenArray.length; i++){
+		    	for (int j = i + 1; j < fourteenArray.length; j++) {
+		            if(fourteenArray[i] == fourteenArray[j]) {
+		               repeated = true;
+		            }
+		    	}
+			}
+		}
+		return repeated;
+	}
+	
+	//15) принимает два массива интов одинаковых по длине, возращает массив интов 
+	//который состоит из перемноженных елементов входящих массивов
+	static int[] multiplyArrays(int [] fifteenFirstArray, int [] fifteenSecondArray){
+		int size = fifteenFirstArray.length;
+		int[] newArray = new int [size];
+		for(int i = 0; i < size; i++) {
+	     	int value = fifteenFirstArray[i] * fifteenSecondArray[i];
+	     	newArray[i] = value;
+	    }
+	    return newArray;
+	}
+
+	//16) принимает два массива интов, возвращает массив из елементов 
+	//которые не совпадают в массивах
+	//static int[] toExceptionalArray(int [] sixteenFirstArray, int [] sixteenSecondArray){
+	//	int[] exceptionalArray = new int[];
+//
+	//	for(int i = 0; i < sixteenFirstArray.length; i++) {
+	//		int count = sixteenSecondArray.length;
+	//		for(j = 0; j < sixteenSecondArray.length; j++){
+	//			
+	//			if (sixteenFirstArray[i] == sixteenSecondArray[j]){
+	 //    			
+	 //    			for (int index = j; index < sixteenSecondArray.length; index++);
+	 //    				sixteenSecondArray[j] = sixteenSecondArray[j+1];
+	 //    				count--;
+	//			}
+//
+	 //    	}
+	//  	}
+	//  return exceptionalArray;
+	//}
+
+	//17) принимает масив интов, возвращает его же но в реверсном порядке
+	static int[] toReversedArray(int [] seventeenArray){
+		int size = seventeenArray.length;
+		int[] reversedArray = new int [size];
+		for(int i = size - 1; i >= 0; i--) {
+	     	int j = size - i - 1;
+	     	reversedArray[j] = seventeenArray[i];
+	    }
+	    return reversedArray;
+	}
+
+	//18) принимает 3 инта:
+    //- размер выходного массива
+    //- нижняя граница
+    //- верхняя граница
+    //возвращает массив интов заданой длинный, 
+    //который содержит случайные числа от нижней границы до верхней границы"
+	static int[] createArray(int length, int up, int low){
+		int [] createdArray = new int [length];
+		Random randomValue = new Random();
+		for(int i = 0; i < length; i++) {
+	     	int value = low + randomValue.nextInt(up - low + 1);
+	     	createdArray[i] = value;
+	    }
+	    return createdArray;
+	}
+
+	//19) принимает 2 массива чаров, проверяет есть ли в 1 массиве, 
+	//такая же последовательность символов которую представляет собой второй массив. 
+	//Возвращает булеан
+	//static Boolean isSameArray(char [] nineteenArrayFirst, char [] nineteenArraySecond){
+	//    Boolean sameArray = false;
+	//    int count = 0;
+	//    
+	//    for(int i = 0; i < nineteenArrayFirst.length; i++){
+	//    	for(int j = 0; j < nineteenArraySecond.length; j++){
+	//    		if(nineteenArrayFirst[i] == nineteenArraySecond[j]){
+	//				count++;
+	//				if (count == nineteenArraySecond.length){
+	//					sameArray = true;
+	//					return sameArray;
+	//				}
+	//				if (nineteenArrayFirst[i+1] != nineteenArraySecond[j+1]){ // тут ошибка. не знаю как обойти
+	//					count = 0;
+	//				}
+	//				
+	//			}
+	  //  	}	
+	//	}
+	//    return sameArray;
+	//}
+
+}
